@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:property-placeholder location = "classpath:application.properties"/>
+
+    <bean id="GreeterWithConstructor" class="com.griddynamics.GreeterWithConstructor" scope="prototype">
+        <constructor-arg name="name" value="Constructor"/>
+    </bean>
+
+    <bean id="GreeterWithSetter" class="com.griddynamics.GreeterWithSetter">
+        <property name="name" ref="GreeterSetter"/>
+    </bean>
+
+    <bean id="GreeterSingleton" class="com.griddynamics.GreeterSingleton" factory-method="getInstance"  scope="singleton">
+        <constructor-arg value="XML Singleton"/>
+    </bean>
+
+    <bean id="GreeterSetter" class="java.lang.String">
+        <constructor-arg name="name" value="Setter"/>
+    </bean>
+
+    <bean id="GreeterWithAfterProperties" class="com.griddynamics.GreeterWithAfterProperties" scope="singleton">
+        <property name="title" value="${title.mr}"/>
+        <property name="name" value="${name.dmitry}"/>
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+</beans>
+
